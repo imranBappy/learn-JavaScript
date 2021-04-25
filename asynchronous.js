@@ -1,15 +1,13 @@
-
 function programmer(isProgrammer) {
     const promise = new Promise((resolve, reject)=>{
     if (isProgrammer) {
         const person = {
             name:'Imran',
-            jon:'Programmer'
+            job:'Programmer'
         }
         setTimeout(() => {
             resolve(person)
-        }, 500);
-        
+        }, 1000);
     }else{
         setTimeout(() => {
             reject(new Error('you ara a no programmer'))
@@ -18,10 +16,20 @@ function programmer(isProgrammer) {
     })
     return promise
 }
+// const programmerSummary = obb =>{
+//     return new Promise((resolve, reject)=>{
+//         resolve(`${`Hello ${obb.name} you ara `} a good ${obb.job}`)
+//     })
+// }
 
-programmer(false).then(result=>{
-    console.log(result);
-}).catch(err=>{
-    console.log(err.message);
-})
+const programmerSummary = obb =>{
+    return Promise.resolve(`${`Hello ${obb.name} you ara `} a good ${obb.job}`)
+}
 
+programmer(true)
+    .then(programmerSummary)
+    .then(result=>{
+        console.log(result);
+    }).catch(err=>{
+        console.log(err.message);
+    })
